@@ -1,0 +1,41 @@
+int buzzer=7;
+int gas;
+int limit=200;
+int redA=2;
+int redB=9;
+int greenA=3;
+int greenB=8;
+void setup() {
+pinMode(buzzer, OUTPUT);
+pinMode(greenA,OUTPUT);
+pinMode(greenB,OUTPUT);
+pinMode(redA,OUTPUT);
+pinMode(redB,OUTPUT);
+Serial.begin(9600);
+}
+
+void loop() {
+  gas= analogRead(A0);
+  Serial.println(gas);
+  if(gas > limit){
+    digitalWrite(greenB,LOW);
+    digitalWrite(redB,LOW);
+    digitalWrite(buzzer,HIGH);
+    digitalWrite(greenA,HIGH);
+    digitalWrite(redA,HIGH);
+    delay(300);
+    digitalWrite(buzzer,LOW);
+    digitalWrite(greenB,HIGH);
+    digitalWrite(redB,HIGH);
+    digitalWrite(greenA,LOW);
+    digitalWrite(redA,LOW);
+    delay(300);
+  }
+  else{
+    digitalWrite(buzzer,LOW);
+    digitalWrite(redB,LOW);
+    digitalWrite(redA,LOW);
+    digitalWrite(greenA,LOW);
+    digitalWrite(greenB,LOW);
+  }
+}
